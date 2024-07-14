@@ -4,6 +4,7 @@ import Input from "../../components/Input";
 import Button from "../../components/Button";
 import { SetStateAction, useState } from "react";
 import { TaskListItemProps } from "../Tasklist";
+import { Container, TaskCreateView, Title, ViewInputs } from "./styles";
 
 interface TaskCreateProps {
   setTaskList: (taskList: SetStateAction<TaskListItemProps[]>) => void;
@@ -28,9 +29,7 @@ export default function TaskCreate({ setTaskList }: TaskCreateProps) {
   return (
     <TaskCreateView>
       <Container>
-        
         <Title>Cadastro de Tarefa</Title>
-        <Text>{taskName}{}</Text>
         <ViewInputs>
           <Input
             width="312px"
@@ -51,31 +50,3 @@ export default function TaskCreate({ setTaskList }: TaskCreateProps) {
   );
 }
 
-const ViewInputs = styled.View`
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-`;
-
-const Title = styled.Text`
-  font-size: 24px;
-  font-weight: bold;
-  color: ${({ theme }) => theme.colors.primary};
-  margin-top: 68px;
-  margin-bottom: 31px;
-`;
-
-const Container = styled.View`
-  background-color: ${({ theme }) => theme.colors.bg};
-  margin-top: 35px;
-  height: 100%;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
-
-const TaskCreateView = styled.View`
-  background-color: ${({ theme }) => theme.colors.primary};
-  height: 100%;
-`;

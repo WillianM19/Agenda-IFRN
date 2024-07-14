@@ -12,6 +12,7 @@ export const ViewLoginForm = styled.View`
     flex-direction: column;
     gap: 24px;
     margin-top: 32px;
+    margin-bottom: 20px;
 `
 
 export const LoginView = styled.View`
@@ -29,3 +30,7 @@ export const TitleText = styled.Text`
   font-size: 36px;
   font-weight: bold;
 `;
+
+export const AuthorText = styled.Text`
+  color: white;
+`

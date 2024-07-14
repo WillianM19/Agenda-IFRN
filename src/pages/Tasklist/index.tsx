@@ -11,10 +11,12 @@ import Input from "../../components/Input";
 import Button from "../../components/Button";
 import IconTrash from "../../assets/Icons/icon-trash.png";
 import { SetStateAction, useState } from "react";
+import Checkbox from "../../components/Checkbox";
+import { TaskCreateView, ContainerHeader, Title, Title2, Container, ListItem, ListItemCheckButton, ListItemText } from "./styles";
 
 interface TaskListProps {
-  taskList: TaskListItemProps[]
-  setTaskList: (taskList: SetStateAction<TaskListItemProps[]>) => void
+  taskList: TaskListItemProps[];
+  setTaskList: (taskList: SetStateAction<TaskListItemProps[]>) => void;
 }
 
 export interface TaskListItemProps {
@@ -23,9 +25,7 @@ export interface TaskListItemProps {
   checked: boolean;
 }
 
-export default function TaskList({taskList, setTaskList}: TaskListProps) {
-  const [toggleCheckBox, setToggleCheckBox] = useState(false);
-
+export default function TaskList({ taskList, setTaskList }: TaskListProps) {
   return (
     <TaskCreateView>
       <ContainerHeader>
@@ -33,74 +33,43 @@ export default function TaskList({taskList, setTaskList}: TaskListProps) {
         <Title2>Você tem {taskList.length} tarefas</Title2>
       </ContainerHeader>
       <Container>
-        {taskList.map((task, index) => (
-          <ListItem BgColor={index % 2 == 0 ? "#0000001c" : "white"}>
-            <Text>{task.name}</Text>
-            <TouchableOpacity
-              onPress={() =>
-                setTaskList((prev) =>
-                  prev.filter((prevTask) => prevTask.id != task.id)
-                )
-              }
+        {taskList.length > 0 ? (
+          taskList.map((task, index) => (
+            <ListItem
+              BgColor={index % 2 == 0 ? "#0000001c" : "white"}
+              key={task.id}
             >
-              <Image source={IconTrash} />
-            </TouchableOpacity>
-          </ListItem>
-        ))}
+              <ListItemCheckButton
+                onPress={() =>
+                  setTaskList((prev) =>
+                    prev.map((prevTask) =>
+                      prevTask.id == task.id
+                        ? { ...prevTask, checked: !prevTask.checked }
+                        : prevTask
+                    )
+                  )
+                }
+              >
+                <Checkbox checked={task.checked} />
+                <ListItemText checked={task.checked}>{task.name}</ListItemText>
+              </ListItemCheckButton>
+              <TouchableOpacity
+                onPress={() =>
+                  setTaskList((prev) =>
+                    prev.filter((prevTask) => prevTask.id != task.id)
+                  )
+                }
+              >
+                <Image source={IconTrash} />
+              </TouchableOpacity>
+            </ListItem>
+          ))
+        ) : (
+          <Text>Não há tarefas</Text>
+        )}
       </Container>
     </TaskCreateView>
   );
 }
 
-const ListItem = styled.View<{ BgColor: string }>`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 24px;
-  width: 100%;
-  height: 48px;
-  background-color: ${({ BgColor }) => BgColor};
-`;
 
-const ContainerHeader = styled.View`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  padding: 20px;
-  margin-top: 40px;
-`;
-
-const ViewInputs = styled.View`
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-`;
-
-const Title = styled.Text`
-  font-size: 24px;
-  font-weight: bold;
-  color: white;
-`;
-
-const Title2 = styled(Title)`
-  font-size: 15px;
-  font-weight: regular;
-`;
-
-const Container = styled.View`
-  background-color: ${({ theme }) => theme.colors.bg};
-  margin-top: 35px;
-  height: 100%;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding-top: 38px;
-`;
-
-const TaskCreateView = styled.View`
-  background-color: ${({ theme }) => theme.colors.primary};
-  height: 100%;
-`;

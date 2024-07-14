@@ -11,14 +11,9 @@ import TaskList, { TaskListItemProps } from "./src/pages/Tasklist";
 export type pages = "Login" | "TaskCreate" | "TaskList";
 
 export default function App() {
-  const [currentPage, setCurrentPage] = useState<pages>("TaskList");
+  const [currentPage, setCurrentPage] = useState<pages>("Login");
 
-  const [taskList, setTaskList] = useState<TaskListItemProps[]>([
-    { id: 0, name: "Tarefa teste", checked: false },
-    { id: 1, name: "Tarefa teste 2", checked: false },
-    { id: 2, name: "Tarefa teste 3", checked: false },
-    { id: 3, name: "Tarefa teste 4", checked: false },
-  ]);
+  const [taskList, setTaskList] = useState<TaskListItemProps[]>([]);
 
   return (
     <ThemeProvider theme={theme}>
