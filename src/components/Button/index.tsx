@@ -1,4 +1,3 @@
-import styled from "styled-components/native";
 import { ButtonText, STouchableOpacity } from "./styles";
 import { ReactNode } from "react";
 

@@ -1,16 +1,10 @@
 import {
   Text,
-  View,
   Image,
-  TouchableOpacityBase,
   TouchableOpacity,
 } from "react-native";
-import CheckBox from "@react-native-community/checkbox";
-import styled from "styled-components/native";
-import Input from "../../components/Input";
-import Button from "../../components/Button";
 import IconTrash from "../../assets/Icons/icon-trash.png";
-import { SetStateAction, useState } from "react";
+import { SetStateAction } from "react";
 import Checkbox from "../../components/Checkbox";
 import { TaskCreateView, ContainerHeader, Title, Title2, Container, ListItem, ListItemCheckButton, ListItemText } from "./styles";
 

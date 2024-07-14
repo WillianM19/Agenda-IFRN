@@ -1,4 +1,3 @@
-import styled from "styled-components/native";
 import { STextInput } from "./styles";
 
 interface InputProps {

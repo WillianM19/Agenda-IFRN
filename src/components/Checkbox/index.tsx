@@ -1,5 +1,4 @@
-import { View, Image } from "react-native";
-import styled from "styled-components/native";
+import { Image } from "react-native";
 import IconChecked from "../../assets/Icons/icon-checked.png";
 import { CheckboxView } from "./styles";
 

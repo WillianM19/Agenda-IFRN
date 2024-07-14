@@ -1,5 +1,4 @@
-import { View, Text, Image, TextInput, TouchableOpacity } from "react-native";
-import styled from "styled-components/native";
+import { Image, TouchableOpacity } from "react-native";
 import LogoIfrn from "../../assets/Icons/icon-if-logo.png";
 import Button from "../../components/Button";
 import Input from "../../components/Input";
@@ -10,7 +9,7 @@ import {
   ViewLoginForm,
   AuthorText,
 } from "./styles";
-import { Dispatch, useState } from "react";
+import { useState } from "react";
 
 interface LoginProps {
   onLogin?: () => void;
