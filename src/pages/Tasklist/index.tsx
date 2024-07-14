@@ -10,28 +10,27 @@ import styled from "styled-components/native";
 import Input from "../../components/Input";
 import Button from "../../components/Button";
 import IconTrash from "../../assets/Icons/icon-trash.png";
-import { useState } from "react";
+import { SetStateAction, useState } from "react";
 
-interface taskListProps {
+interface TaskListProps {
+  taskList: TaskListItemProps[]
+  setTaskList: (taskList: SetStateAction<TaskListItemProps[]>) => void
+}
+
+export interface TaskListItemProps {
   id: number;
   name: string;
   checked: boolean;
 }
 
-export default function TaskList() {
+export default function TaskList({taskList, setTaskList}: TaskListProps) {
   const [toggleCheckBox, setToggleCheckBox] = useState(false);
-  const [taskList, setTaskList] = useState<taskListProps[]>([
-    { id: 0, name: "Tarefa teste", checked: false },
-    { id: 1, name: "Tarefa teste 2", checked: false },
-    { id: 2, name: "Tarefa teste 3", checked: false },
-    { id: 3, name: "Tarefa teste 4", checked: false },
-  ]);
 
   return (
     <TaskCreateView>
       <ContainerHeader>
         <Title>Agenda.IFRN</Title>
-        <Title2>Você tem 2 tarefas</Title2>
+        <Title2>Você tem {taskList.length} tarefas</Title2>
       </ContainerHeader>
       <Container>
         {taskList.map((task, index) => (
