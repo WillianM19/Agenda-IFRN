@@ -3,8 +3,10 @@ import { STextInput } from "./styles";
 
 interface InputProps {
   placeholder: string;
+  width?: string;
+  alt?: boolean; //Estilo alternativo
 }
 
-export default function Input({ placeholder }: InputProps) {
-  return <STextInput placeholder={placeholder}></STextInput>;
+export default function Input(props: InputProps) {
+  return <STextInput {...props}></STextInput>;
 }
